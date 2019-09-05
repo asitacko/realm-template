@@ -21,7 +21,7 @@ setup() {
     test -f venv/bin/python || python -m venv venv
     test -f venv/bin/doit || pip install -r requirements.txt
     test -f .git/hooks/pre-commit || pre-commit install
-
+    test -d realm || gsub update
     mkdir -p .cargo;
     test -f .cargo/bin/diesel || cargo install diesel_cli --no-default-features --features postgres
     # test -f .cargo/bin/aa || cargo install alert-after

@@ -27,6 +27,7 @@ in
       fzf
       curl
       ripgrep
+      cacert
       taskwarrior
       tokei
       man
