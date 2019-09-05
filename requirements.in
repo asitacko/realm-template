@@ -1,0 +1,15 @@
+awscli==1.16.207
+doit==0.31.1
+django==2.2.3
+pre-commit
+dj-database-url
+psycopg2
+ipython
+django-extensions
+pygments
+format-sql
+flake8
+black
+realm-cli
+gsub
+pip-tools
