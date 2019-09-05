@@ -23,7 +23,7 @@ setup() {
     test -f .git/hooks/pre-commit || pre-commit install
 
     mkdir -p .cargo;
-    # test -f .cargo/bin/diesel || cargo install diesel_cli --no-default-features --features postgres
+    test -f .cargo/bin/diesel || cargo install diesel_cli --no-default-features --features postgres
     # test -f .cargo/bin/aa || cargo install alert-after
 
     doit
