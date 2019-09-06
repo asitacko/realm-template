@@ -64,9 +64,10 @@ Tested using PyCharm PyCharm 2018.3.7 (Professional Edition). Note: later PyChar
    install [Pest Plugin], _essential_ if editing [`.pest` files].
 
 3. **Elm**: Ensure [Elm Plugin], tested: v3.2.1, is installed. In Preferences ->
-   Languages & Frameworks -> Elm, click "Auto Discover" both in "Elm Compiler" and
-   "elm-format". Then open any elm file in "frontend", and select corresponding
-   folder's `elm.json` file after clicking "Attach elm.json (or elm-package.json)".
+   Languages & Frameworks -> Elm, get path from `nix-shell` using `which elm` and set it
+   for "Elm Compiler" and similarly `which elm-format` for "elm-format". Then open any
+   elm file in "frontend", and select corresponding folder's `elm.json` file after
+   clicking "Attach elm.json (or elm-package.json)".
 
 
 [Rust Plugin]: https://intellij-rust.github.io

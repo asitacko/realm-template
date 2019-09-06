@@ -12,7 +12,7 @@ export REALM_WATCHER_DIR="./frontend/"
 export REALM_WATCHER_DOIT_CMD="elm"
 
 nn() {
-    echo "in_nix:" ${IN_NIX:-nopes}
+    echo "in_nix:" ${IN_NIX_SHELL:-nopes}
 }
 
 setup() {
