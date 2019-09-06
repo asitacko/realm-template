@@ -32,3 +32,5 @@ venv
 .cargo
 *.iso
 realm
+.zsh_history
+.zcompdump-*

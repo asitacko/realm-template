@@ -9,7 +9,7 @@ export DATABASE_URL=postgres://root@localhost/foo_db
 export CARGO_HOME=".cargo";
 
 export REALM_WATCHER_DIR="./frontend/"
-export REALM_WATCHER_CMD="doit elm"
+export REALM_WATCHER_DOIT_CMD="elm"
 
 nn() {
     echo "in_nix:" ${IN_NIX:-nopes}
@@ -24,7 +24,7 @@ setup() {
     test -d realm || gsub update
     mkdir -p .cargo;
     test -f .cargo/bin/diesel || cargo install diesel_cli --no-default-features --features postgres
-    # test -f .cargo/bin/aa || cargo install alert-after
+    test -f .cargo/bin/aa || cargo install alert-after
 
     doit
     popd2

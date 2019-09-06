@@ -34,7 +34,7 @@ $ nix-store --add-fixed --recursive sha256 /Applications/Xcode.app
 Use nix shell in pure mode to work on our code.
 
 ```bash
-$ nix-shell --pure
+$ nix-shell --pure --run zsh
 ```
 
 Ensure [postgresql-11] is installed and running. Setup tables:
@@ -43,21 +43,13 @@ Ensure [postgresql-11] is installed and running. Setup tables:
 $ recreatedb
 ```
 
-Paste the following to `sudo vim /etc/hosts`:
-
-```hosts
-127.0.0.1    local.foo.com
-```
-
 You may want to run `scripts/80.sh`.
 
 ## Day To Day Development
 
 To test: `ctest`, or `cargo check --all` for quicker type errors.
 
-Run the service using `cargo run -- --test`, and visit:
-
-- [local.foo.com:3000], [foo test], [foo storybook].
+Run the service using `cargo run -- --test`, and visit http://127.0.0.1:3000
 
 ## PyCharm Setup
 
@@ -77,26 +69,8 @@ Tested using PyCharm PyCharm 2018.3.7 (Professional Edition). Note: later PyChar
    folder's `elm.json` file after clicking "Attach elm.json (or elm-package.json)".
 
 
-[autoenv]: https://github.com/Tarrasch/zsh-autoenv
-[oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
-[heroku installer]: https://devcenter.heroku.com/articles/heroku-cli
-[heroku-repo]: https://github.com/heroku/heroku-repo
-[slug size limit]: https://devcenter.heroku.com/articles/slug-compiler#slug-size
-[create a slug]: https://devcenter.heroku.com/articles/platform-api-deploying-slugs
-[limit on build time]: https://devcenter.heroku.com/articles/slug-compiler#time-limit
-[Buildpack details]: https://devcenter.heroku.com/articles/buildpack-api
-[Stack details]: https://devcenter.heroku.com/articles/stack
-[Docker with heroku]:
-    https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
-[Ubuntu 18.04]: https://devcenter.heroku.com/articles/stack-packages
 [Rust Plugin]: https://intellij-rust.github.io
 [Pest Plugin]: https://plugins.jetbrains.com/plugin/12046-pest
 [`.pest` files]: https://pest.rs/book/
 [Elm Plugin]: https://plugins.jetbrains.com/plugin/10268-elm/
-[local.fifthtry.com:3000]: http://local.fifthtry.com:3000
-[local.nunciate.org:3000]: http://local.nunciate.org:3000
-[fifthtry test]: http://local.fifthtry.com:3000/test/
-[nunciate test]: http://local.nunciate.org:3000/test/
-[fifthtry storybook]: http://local.fifthtry.com:3000/storybook/
-[nunciate storybook]: http://local.nunciate.org:3000/storybook/
 [postgresql-11]: https://postgresapp.com

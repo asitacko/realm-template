@@ -10,10 +10,6 @@ in
     buildInputs = [ rustChannels.rust rustChannels.clippy-preview ];
 
     nativeBuildInputs = [
-      frameworks.CoreServices
-      frameworks.Security
-      frameworks.CoreFoundation
-
       elmPackages.elm-format
       elmPackages.elm
 
@@ -43,13 +39,24 @@ in
       python37
       python37Packages.psycopg2
       python37Packages.pre-commit
-    ];
+    ]
+    ++ (
+         stdenv.lib.optionals stdenv.isDarwin [
+           frameworks.CoreServices
+           frameworks.Security
+           frameworks.CoreFoundation
+           frameworks.Foundation
+         ]
+       )
+    ;
 
     RUST_BACKTRACE = 1;
     shellHook = ''
-      export NIX_LDFLAGS="-F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $NIX_LDFLAGS";
+      export NIX_LDFLAGS="-F${frameworks.CoreServices}/Library/Frameworks -framework CoreServices -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $NIX_LDFLAGS";
       export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH;
       export IN_NIX=yep;
-      source auto.sh;
+      export ZDOTDIR=`pwd`;
+      export HISTFILE=~/.zsh_history
+      echo "Using ${python37.name}, ${elmPackages.elm.name}, ${rustChannels.rust.name} and ${postgresql_11.name}."
     '';
   }
