@@ -51,7 +51,7 @@ view model tagger inner =
 header : Model -> E.Element Msg
 header m =
     E.row [ E.width E.fill, E.spacing 10 ]
-        (U.link Routes.index [ E.alignLeft ] GoTo (E.text "teja number one")
+        (U.link Routes.index [ E.alignLeft ] GoTo (E.text "realm template")
             :: (case m.config.name of
                     Just name ->
                         [ showName name m

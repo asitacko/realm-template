@@ -9,7 +9,7 @@ export DATABASE_URL=postgres://root@localhost/foo_db
 export CARGO_HOME=".cargo";
 
 export REALM_WATCHER_DIR="./frontend/"
-export REALM_WATCHER_DOIT_CMD="elm"
+export REALM_WATCHER_DOIT_CMD="doit elm"
 
 nn() {
     echo "in_nix:" ${IN_NIX_SHELL:-nopes}
