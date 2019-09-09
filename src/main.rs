@@ -1,4 +1,4 @@
-use amitu_base::*;
+use realm::base::*;
 
 realm::realm! {middleware}
 
@@ -12,7 +12,7 @@ pub fn middleware(ctx: &realm::Context) -> Result<realm::Response> {
                     "ok: {:?} {} in {}",
                     ctx.request.method(),
                     path,
-                    amitu_base::elapsed(start)
+                    realm::base::elapsed(start)
                 );
                 Ok(realm::Response::Http(
                     http::Response::builder()
@@ -57,7 +57,7 @@ pub fn middleware(ctx: &realm::Context) -> Result<realm::Response> {
         },
         ctx.request.method(),
         ctx.request.uri(),
-        amitu_base::elapsed(start)
+        realm::base::elapsed(start)
     );
 
     resp

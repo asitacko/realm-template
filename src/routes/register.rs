@@ -35,7 +35,7 @@ pub fn post(in_: &In, name: String, email: String, password: String) -> Result<r
         }
     };
 
-    match foo_bl::register_user(in_.mn(), email.as_str(), name.as_str(), password.as_str())? {
+    match foo_bl::register_user(in_, email.as_str(), name.as_str(), password.as_str())? {
         Ok(_) => (),
         Err(form_errors) => {
             return Page {
@@ -47,7 +47,7 @@ pub fn post(in_: &In, name: String, email: String, password: String) -> Result<r
     }
 
     let (uid, name, sid) = match foo_bl::log_user_in(
-        in_.mn(),
+        in_,
         email.as_str(),
         password.as_str(),
         user_agent.as_str(),

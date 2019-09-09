@@ -29,7 +29,7 @@ pub fn reset_db(in_: &In) -> Result<realm::Response> {
         return http404(in_, "server not running in test mode");
     }
 
-    diesel::sql_query("DROP SCHEMA IF EXISTS test CASCADE;").execute(in_.mn().conn)?;
+    diesel::sql_query("DROP SCHEMA IF EXISTS test CASCADE;").execute(in_.conn)?;
 
     let output = std::process::Command::new("psql")
         .args(&["-d", "foo_db", "-f", "schema.sql"])

@@ -2,7 +2,7 @@ use crate::prelude::*;
 use diesel::prelude::*;
 
 pub fn log_user_in(
-    m: &Mn,
+    in_: &In,
     email: &str,
     password: &str,
     user_agent: &str,
@@ -11,7 +11,7 @@ pub fn log_user_in(
     use crate::schema::teja_session;
     use crate::schema::teja_user;
 
-    let mut form = Form::new(m);
+    let mut form = Form::new(in_);
     form.c1("email", email, validators::email_valid)?;
     form.c1("password", password, validators::password_valid)?;
     if form.invalid() {
@@ -22,7 +22,7 @@ pub fn log_user_in(
         .select((teja_user::id, teja_user::name, teja_user::password))
         .filter(teja_user::email.eq(email))
         .filter(teja_user::status.not_ilike("left_company"))
-        .first(m.conn)
+        .first(in_.conn)
         .map_err(|e| e.into());
 
     let (uid, name, hash): (i32, String, String) = match r {
@@ -34,7 +34,7 @@ pub fn log_user_in(
         }
     };
 
-    if !amitu_base::verify_password(&password, hash.as_str())? {
+    if !realm::base::verify_password(&password, hash.as_str())? {
         form.add_error("password", password, "incorrect password");
         return Ok(form.errors());
     }
@@ -43,12 +43,12 @@ pub fn log_user_in(
         .values((
             teja_session::last_ip.eq(ip),
             teja_session::user_agent.eq(user_agent),
-            teja_session::created_on.eq(m.now),
-            teja_session::updated_on.eq(m.now),
+            teja_session::created_on.eq(in_.now),
+            teja_session::updated_on.eq(in_.now),
             teja_session::user_id.eq(uid),
         ))
         .returning(teja_session::id)
-        .get_result(m.conn)?;
+        .get_result(in_.conn)?;
 
     Ok(Ok((uid, name, sid)))
 }

@@ -36,7 +36,7 @@ pub fn post(in_: &In, email: String, password: String) -> Result<realm::Response
     };
 
     let (uid, name, sid) = match foo_bl::log_user_in(
-        in_.mn(),
+        in_,
         email.as_str(),
         password.as_str(),
         user_agent.as_str(),
