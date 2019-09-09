@@ -16,15 +16,18 @@ tests =
 
 index : RT.Test
 index =
-    ( "index"
-    , [ RT.Navigate "Index" "anonymous" Routes.index ]
-    )
+    { id = "index"
+    , context = []
+    , steps = [ RT.Navigate "Index" "anonymous" Routes.index ]
+    }
 
 
 login : RT.Test
 login =
-    ( "login"
-    , [ RT.Navigate "Login" "anonymous" Routes.login
-      , RT.Submit "Index" "logged in" <| Actions.login "amitu" "foo"
-      ]
-    )
+    { id = "login"
+    , context = []
+    , steps =
+        [ RT.Navigate "Login" "anonymous" Routes.login
+        , RT.Submit "Index" "logged in" <| Actions.login "amitu" "foo"
+        ]
+    }
