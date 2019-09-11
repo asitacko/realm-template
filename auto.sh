@@ -129,7 +129,7 @@ dbshell() {
 rust_schema() {
     pushd2 /foo_bl
     diesel print-schema > src/schema.rs
-    sed -i -e 's/Citext/amitu_base::sql_types::Citext/g' src/schema.rs
+    sed -i -e 's/Citext/realm::base::sql_types::Citext/g' src/schema.rs
     popd2
 }
 
